@@ -1,4 +1,4 @@
-package dev.bastida.finca.core.out.persistence;
+package dev.bastida.finca.core.application.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
