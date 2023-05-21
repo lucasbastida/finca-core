@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.relational.core.mapping.Column;
 
 @Entity
-@Table(name = "users")
+@Table(name = "accounts")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Account {
     @Id
     @GeneratedValue
     private Long id;
@@ -31,7 +31,7 @@ public class User {
     @Column
     private String email;
 
-    public User(String firstName, String lastName, String password, String email) {
+    public Account(String firstName, String lastName, String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
