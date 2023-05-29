@@ -1,6 +1,7 @@
-package dev.bastida.finca.core.in.web;
+package dev.bastida.finca.core.adapter.in.web;
 
 import dev.bastida.finca.core.application.port.in.RegisterAccountCommand;
+import dev.bastida.finca.core.application.port.in.RegisterAccountResponse;
 import dev.bastida.finca.core.application.port.in.RegisterAccountUseCase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,14 +15,14 @@ public class RegisterAccountController {
 
     private final RegisterAccountUseCase registerAccountUseCase;
 
-    @PostMapping("/register")
-    public void registerAccount(@Valid @RequestBody RegisterAccountRequest registerAccountRequest) {
+    @PostMapping("/api/v1/auth/register")
+    public RegisterAccountResponse registerAccount(@Valid @RequestBody RegisterAccountRequest registerAccountRequest) {
         RegisterAccountCommand command = new RegisterAccountCommand(
                 registerAccountRequest.getFirstName(),
                 registerAccountRequest.getLastName(),
                 registerAccountRequest.getPassword(),
                 registerAccountRequest.getEmail()
         );
-        registerAccountUseCase.registerAccount(command);
+        return registerAccountUseCase.registerAccount(command);
     }
 }
