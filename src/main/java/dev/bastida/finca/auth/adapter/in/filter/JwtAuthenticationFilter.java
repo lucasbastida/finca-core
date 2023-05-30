@@ -1,6 +1,6 @@
-package dev.bastida.finca.core.adapter.in.filter;
+package dev.bastida.finca.auth.adapter.in.filter;
 
-import dev.bastida.finca.core.config.SecurityConfig;
+import dev.bastida.finca.config.SecurityConfig;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

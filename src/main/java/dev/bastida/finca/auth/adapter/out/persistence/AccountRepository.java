@@ -1,6 +1,6 @@
-package dev.bastida.finca.core.adapter.out.persistence;
+package dev.bastida.finca.auth.adapter.out.persistence;
 
-import dev.bastida.finca.core.application.domain.Account;
+import dev.bastida.finca.auth.domain.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

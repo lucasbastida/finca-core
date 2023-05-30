@@ -1,7 +1,7 @@
-package dev.bastida.finca.core.adapter.in.filter;
+package dev.bastida.finca.auth.adapter.in.filter;
 
-import dev.bastida.finca.core.adapter.out.persistence.TokenRepository;
-import dev.bastida.finca.core.application.domain.Token;
+import dev.bastida.finca.auth.adapter.out.persistence.TokenRepository;
+import dev.bastida.finca.auth.domain.Token;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

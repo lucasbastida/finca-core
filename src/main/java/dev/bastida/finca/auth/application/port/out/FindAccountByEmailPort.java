@@ -1,6 +1,6 @@
-package dev.bastida.finca.core.application.port.out;
+package dev.bastida.finca.auth.application.port.out;
 
-import dev.bastida.finca.core.application.domain.Account;
+import dev.bastida.finca.auth.domain.Account;
 
 import java.util.Optional;
 

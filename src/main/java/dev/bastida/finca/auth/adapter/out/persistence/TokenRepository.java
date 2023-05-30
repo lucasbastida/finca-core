@@ -1,6 +1,6 @@
-package dev.bastida.finca.core.adapter.out.persistence;
+package dev.bastida.finca.auth.adapter.out.persistence;
 
-import dev.bastida.finca.core.application.domain.Token;
+import dev.bastida.finca.auth.domain.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

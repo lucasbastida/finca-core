@@ -1,7 +1,7 @@
-package dev.bastida.finca.core.config;
+package dev.bastida.finca.config;
 
-import dev.bastida.finca.core.adapter.in.filter.JwtAuthenticationFilter;
-import dev.bastida.finca.core.adapter.in.filter.JwtService;
+import dev.bastida.finca.auth.adapter.in.filter.JwtAuthenticationFilter;
+import dev.bastida.finca.auth.adapter.in.filter.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

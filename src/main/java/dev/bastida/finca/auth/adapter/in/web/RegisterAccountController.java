@@ -1,8 +1,8 @@
-package dev.bastida.finca.core.adapter.in.web;
+package dev.bastida.finca.auth.adapter.in.web;
 
-import dev.bastida.finca.core.application.port.in.RegisterAccountCommand;
-import dev.bastida.finca.core.application.port.in.RegisterAccountResponse;
-import dev.bastida.finca.core.application.port.in.RegisterAccountUseCase;
+import dev.bastida.finca.auth.application.port.in.RegisterAccountCommand;
+import dev.bastida.finca.auth.application.port.in.RegisterAccountResponse;
+import dev.bastida.finca.auth.application.port.in.RegisterAccountUseCase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

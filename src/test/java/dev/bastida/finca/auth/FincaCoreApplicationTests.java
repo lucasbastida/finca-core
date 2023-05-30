@@ -1,4 +1,4 @@
-package dev.bastida.finca.core;
+package dev.bastida.finca.auth;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

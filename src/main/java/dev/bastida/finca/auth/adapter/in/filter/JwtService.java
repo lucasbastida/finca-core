@@ -1,7 +1,7 @@
-package dev.bastida.finca.core.adapter.in.filter;
+package dev.bastida.finca.auth.adapter.in.filter;
 
-import dev.bastida.finca.core.adapter.out.persistence.TokenRepository;
-import dev.bastida.finca.core.config.SecurityConfigProperties;
+import dev.bastida.finca.auth.adapter.out.persistence.TokenRepository;
+import dev.bastida.finca.config.SecurityConfigProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

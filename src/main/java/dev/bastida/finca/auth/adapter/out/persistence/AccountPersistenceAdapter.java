@@ -1,8 +1,8 @@
-package dev.bastida.finca.core.adapter.out.persistence;
+package dev.bastida.finca.auth.adapter.out.persistence;
 
-import dev.bastida.finca.core.application.domain.Account;
-import dev.bastida.finca.core.application.port.out.FindAccountByEmailPort;
-import dev.bastida.finca.core.application.port.out.RegisterAccountPort;
+import dev.bastida.finca.auth.domain.Account;
+import dev.bastida.finca.auth.application.port.out.FindAccountByEmailPort;
+import dev.bastida.finca.auth.application.port.out.RegisterAccountPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

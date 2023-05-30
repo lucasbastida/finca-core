@@ -1,4 +1,4 @@
-package dev.bastida.finca.core.application.port.in;
+package dev.bastida.finca.auth.application.port.in;
 
 public record RefreshTokenResponse(String accessToken, String refreshToken) {
 }

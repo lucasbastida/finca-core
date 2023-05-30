@@ -1,6 +1,6 @@
-package dev.bastida.finca.core.application.service;
+package dev.bastida.finca.auth.application.service;
 
-import dev.bastida.finca.core.application.port.out.FindAccountByEmailPort;
+import dev.bastida.finca.auth.application.port.out.FindAccountByEmailPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,9 +1,9 @@
-package dev.bastida.finca.core.application.service;
+package dev.bastida.finca.auth.application.service;
 
-import dev.bastida.finca.core.adapter.in.filter.JwtService;
-import dev.bastida.finca.core.application.port.in.RefreshTokenCommand;
-import dev.bastida.finca.core.application.port.in.RefreshTokenResponse;
-import dev.bastida.finca.core.application.port.in.RefreshTokenUseCase;
+import dev.bastida.finca.auth.adapter.in.filter.JwtService;
+import dev.bastida.finca.auth.application.port.in.RefreshTokenCommand;
+import dev.bastida.finca.auth.application.port.in.RefreshTokenResponse;
+import dev.bastida.finca.auth.application.port.in.RefreshTokenUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;

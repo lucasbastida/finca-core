@@ -1,4 +1,4 @@
-package dev.bastida.finca.core.config;
+package dev.bastida.finca.config;
 
 import lombok.Getter;
 import lombok.Setter;

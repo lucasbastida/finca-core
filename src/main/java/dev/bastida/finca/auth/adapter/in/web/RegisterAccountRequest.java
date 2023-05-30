@@ -1,4 +1,4 @@
-package dev.bastida.finca.core.adapter.in.web;
+package dev.bastida.finca.auth.adapter.in.web;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
