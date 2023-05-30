@@ -1,4 +1,4 @@
-package dev.bastida.finca.core.application.domain;
+package dev.bastida.finca.auth.application.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
