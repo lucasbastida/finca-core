@@ -1,5 +1,6 @@
 package dev.bastida.finca.auth.adapter.in.filter;
 
+import dev.bastida.finca.auth.application.service.JwtService;
 import dev.bastida.finca.config.SecurityConfig;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

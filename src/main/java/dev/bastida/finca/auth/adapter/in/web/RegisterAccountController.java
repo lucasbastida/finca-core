@@ -1,9 +1,11 @@
 package dev.bastida.finca.auth.adapter.in.web;
 
-import dev.bastida.finca.auth.application.port.in.RegisterAccountCommand;
-import dev.bastida.finca.auth.application.port.in.RegisterAccountResponse;
 import dev.bastida.finca.auth.application.port.in.RegisterAccountUseCase;
+import dev.bastida.finca.auth.application.port.in.RegisterAccountUseCase.RegisterAccountCommand;
+import dev.bastida.finca.auth.application.port.in.RegisterAccountUseCase.RegisterAccountResponse;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,5 +26,17 @@ public class RegisterAccountController {
                 registerAccountRequest.getEmail()
         );
         return registerAccountUseCase.registerAccount(command);
+    }
+
+    @Data
+    public static class RegisterAccountRequest {
+        @NotBlank
+        private String firstName;
+        @NotBlank
+        private String lastName;
+        @NotBlank
+        private String password;
+        @NotBlank
+        private String email;
     }
 }

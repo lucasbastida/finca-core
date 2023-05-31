@@ -1,13 +1,10 @@
 package dev.bastida.finca.auth.application.service;
 
-import dev.bastida.finca.auth.adapter.in.filter.JwtService;
 import dev.bastida.finca.auth.adapter.out.persistence.TokenRepository;
-import dev.bastida.finca.auth.domain.Account;
-import dev.bastida.finca.auth.domain.Token;
-import dev.bastida.finca.auth.application.port.in.RegisterAccountCommand;
-import dev.bastida.finca.auth.application.port.in.RegisterAccountResponse;
 import dev.bastida.finca.auth.application.port.in.RegisterAccountUseCase;
 import dev.bastida.finca.auth.application.port.out.RegisterAccountPort;
+import dev.bastida.finca.auth.domain.Account;
+import dev.bastida.finca.auth.domain.Token;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

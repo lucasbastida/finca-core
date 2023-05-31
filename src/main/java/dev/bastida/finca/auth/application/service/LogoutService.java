@@ -1,4 +1,4 @@
-package dev.bastida.finca.auth.adapter.in.filter;
+package dev.bastida.finca.auth.application.service;
 
 import dev.bastida.finca.auth.adapter.out.persistence.TokenRepository;
 import dev.bastida.finca.auth.domain.Token;

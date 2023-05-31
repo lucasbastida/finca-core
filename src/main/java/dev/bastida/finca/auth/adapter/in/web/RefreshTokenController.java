@@ -1,8 +1,8 @@
 package dev.bastida.finca.auth.adapter.in.web;
 
-import dev.bastida.finca.auth.application.port.in.RefreshTokenCommand;
-import dev.bastida.finca.auth.application.port.in.RefreshTokenResponse;
 import dev.bastida.finca.auth.application.port.in.RefreshTokenUseCase;
+import dev.bastida.finca.auth.application.port.in.RefreshTokenUseCase.RefreshTokenCommand;
+import dev.bastida.finca.auth.application.port.in.RefreshTokenUseCase.RefreshTokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.PostMapping;

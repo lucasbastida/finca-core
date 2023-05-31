@@ -1,12 +1,9 @@
 package dev.bastida.finca.auth.application.service;
 
-import dev.bastida.finca.auth.adapter.in.filter.JwtService;
 import dev.bastida.finca.auth.adapter.out.persistence.TokenRepository;
+import dev.bastida.finca.auth.application.port.in.AuthenticateAccountUseCase;
 import dev.bastida.finca.auth.domain.Account;
 import dev.bastida.finca.auth.domain.Token;
-import dev.bastida.finca.auth.application.port.in.AuthenticateAccountCommand;
-import dev.bastida.finca.auth.application.port.in.AuthenticateAccountResponse;
-import dev.bastida.finca.auth.application.port.in.AuthenticateAccountUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -50,7 +47,6 @@ public class AuthenticateAccountService implements AuthenticateAccountUseCase {
                 .revoked(false)
                 .build();
         tokenRepository.save(token);
-
     }
 
     private void revokeAllUserTokens(Account account) {
