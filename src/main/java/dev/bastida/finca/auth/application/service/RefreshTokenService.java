@@ -16,7 +16,7 @@ public class RefreshTokenService implements RefreshTokenUseCase {
     public RefreshTokenResponse refresh(RefreshTokenCommand command) {
         final String username = jwtService.extractUsername(command.refreshToken());
         final UserDetails userDetails = userDetailService.loadUserByUsername(username);
-        if (!jwtService.isTokenValid(command.refreshToken(), userDetails)) {
+        if (jwtService.isInvalidJwt(command.refreshToken(), userDetails)) {
             return null;
         }
 

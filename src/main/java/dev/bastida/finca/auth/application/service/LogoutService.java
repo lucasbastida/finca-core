@@ -1,6 +1,7 @@
 package dev.bastida.finca.auth.application.service;
 
-import dev.bastida.finca.auth.adapter.out.persistence.TokenRepository;
+import dev.bastida.finca.auth.application.port.out.FindTokenPort;
+import dev.bastida.finca.auth.application.port.out.SaveTokenPort;
 import dev.bastida.finca.auth.domain.Token;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,7 +15,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LogoutService implements LogoutHandler {
 
-    private final TokenRepository tokenRepository;
+    private final FindTokenPort findTokenPort;
+    private final SaveTokenPort saveTokenPort;
 
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
@@ -26,7 +28,7 @@ public class LogoutService implements LogoutHandler {
 
         final String jwt = authorization.substring(7);
 
-        final Token token = tokenRepository.findByToken(jwt)
+        final Token token = findTokenPort.findByTokenValue(jwt)
                 .orElse(null);
 
         if (token == null) {
@@ -35,7 +37,7 @@ public class LogoutService implements LogoutHandler {
 
         token.setExpired(true);
         token.setRevoked(true);
-        tokenRepository.save(token);
+        saveTokenPort.save(token);
         SecurityContextHolder.clearContext();
     }
 }

@@ -1,8 +1,8 @@
 package dev.bastida.finca.auth.application.service;
 
-import dev.bastida.finca.auth.adapter.out.persistence.TokenRepository;
 import dev.bastida.finca.auth.application.port.in.RegisterAccountUseCase;
 import dev.bastida.finca.auth.application.port.out.RegisterAccountPort;
+import dev.bastida.finca.auth.application.port.out.SaveTokenPort;
 import dev.bastida.finca.auth.domain.Account;
 import dev.bastida.finca.auth.domain.Token;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class RegisterAccountService implements RegisterAccountUseCase {
     private final PasswordEncoder passwordEncoder;
     private final RegisterAccountPort registerAccountPort;
     private final JwtService jwtService;
-    private final TokenRepository tokenRepository;
+    private final SaveTokenPort saveTokenPort;
 
     @Override
     public RegisterAccountResponse registerAccount(RegisterAccountCommand command) {
@@ -39,10 +39,10 @@ public class RegisterAccountService implements RegisterAccountUseCase {
     private void saveUserToken(Account account, String jwt) {
         final Token token = Token.builder()
                 .account(account)
-                .token(jwt)
+                .value(jwt)
                 .expired(false)
                 .revoked(false)
                 .build();
-        tokenRepository.save(token);
+        saveTokenPort.save(token);
     }
 }

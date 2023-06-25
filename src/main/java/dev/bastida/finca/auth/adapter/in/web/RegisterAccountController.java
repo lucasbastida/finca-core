@@ -19,7 +19,7 @@ public class RegisterAccountController {
 
     @PostMapping("/api/v1/auth/register")
     public RegisterAccountResponse registerAccount(@Valid @RequestBody RegisterAccountRequest registerAccountRequest) {
-        RegisterAccountCommand command = new RegisterAccountCommand(
+        final RegisterAccountCommand command = new RegisterAccountCommand(
                 registerAccountRequest.getFirstName(),
                 registerAccountRequest.getLastName(),
                 registerAccountRequest.getPassword(),

@@ -17,13 +17,19 @@ public class Token {
     public Integer id;
 
     @Column(unique = true)
-    public String token;
+    public String value;
 
+    @Column
     public boolean revoked;
 
+    @Column
     public boolean expired;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     public Account account;
+
+    public boolean isValid() {
+        return !this.expired && !this.revoked;
+    }
 }

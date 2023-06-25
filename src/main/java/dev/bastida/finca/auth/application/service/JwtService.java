@@ -1,6 +1,8 @@
 package dev.bastida.finca.auth.application.service;
 
-import dev.bastida.finca.auth.adapter.out.persistence.TokenRepository;
+import dev.bastida.finca.auth.application.port.in.JwtUseCase;
+import dev.bastida.finca.auth.application.port.out.FindTokenPort;
+import dev.bastida.finca.auth.domain.Token;
 import dev.bastida.finca.config.SecurityConfigProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -18,10 +20,10 @@ import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
-public class JwtService {
+public class JwtService implements JwtUseCase {
 
     private final SecurityConfigProperties securityConfigProperties;
-    private final TokenRepository tokenRepository;
+    private final FindTokenPort findTokenPort;
 
     public String extractUsername(String jwt) {
         return extractClaim(jwt, Claims::getSubject);
@@ -45,16 +47,16 @@ public class JwtService {
         return Keys.hmacShaKeyFor(decode);
     }
 
-    public boolean isTokenValid(String jwt, UserDetails userDetails) {
+    public boolean isInvalidJwt(String jwt, UserDetails userDetails) {
         final String username = extractUsername(jwt);
+
         final boolean tokenClaimNotExpired = isTokenNotExpired(jwt);
         final boolean isSameUsername = username.equals(userDetails.getUsername());
-
-        final Boolean isTokenValid = tokenRepository.findByToken(jwt)
-                .map(token -> token.isExpired() && token.isRevoked())
+        final boolean isTokenValid = findTokenPort.findByTokenValue(jwt)
+                .map(Token::isValid)
                 .orElse(false);
 
-        return isSameUsername && tokenClaimNotExpired && isTokenValid;
+        return !(isSameUsername && tokenClaimNotExpired && isTokenValid);
     }
 
     private boolean isTokenNotExpired(String jwt) {
@@ -62,23 +64,20 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
-        final HashMap<String, Object> claims = new HashMap<>();
-        return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + securityConfigProperties.getJwt().expiration()))
-                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-                .compact();
+        return generateToken(userDetails.getUsername(), securityConfigProperties.getJwt().refreshTokenExpiration());
     }
 
     public String generateRefreshToken(UserDetails userDetails) {
+        return generateToken(userDetails.getUsername(), securityConfigProperties.getJwt().refreshTokenExpiration());
+    }
+
+    private String generateToken(String username, long expiration) {
         final HashMap<String, Object> claims = new HashMap<>();
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(userDetails.getUsername())
+                .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + securityConfigProperties.getJwt().refreshTokenExpiration()))
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

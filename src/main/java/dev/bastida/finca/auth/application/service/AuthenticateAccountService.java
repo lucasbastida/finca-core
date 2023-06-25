@@ -1,7 +1,8 @@
 package dev.bastida.finca.auth.application.service;
 
-import dev.bastida.finca.auth.adapter.out.persistence.TokenRepository;
 import dev.bastida.finca.auth.application.port.in.AuthenticateAccountUseCase;
+import dev.bastida.finca.auth.application.port.out.FindTokenPort;
+import dev.bastida.finca.auth.application.port.out.SaveTokenPort;
 import dev.bastida.finca.auth.domain.Account;
 import dev.bastida.finca.auth.domain.Token;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,8 @@ public class AuthenticateAccountService implements AuthenticateAccountUseCase {
 
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
-    private final TokenRepository tokenRepository;
+    private final SaveTokenPort saveTokenPort;
+    private final FindTokenPort findTokenPort;
 
     @Override
     public AuthenticateAccountResponse authenticate(AuthenticateAccountCommand command) {
@@ -42,15 +44,15 @@ public class AuthenticateAccountService implements AuthenticateAccountUseCase {
     private void saveUserToken(Account account, String jwt) {
         final Token token = Token.builder()
                 .account(account)
-                .token(jwt)
+                .value(jwt)
                 .expired(false)
                 .revoked(false)
                 .build();
-        tokenRepository.save(token);
+        saveTokenPort.save(token);
     }
 
     private void revokeAllUserTokens(Account account) {
-        final List<Token> allValidTokensByUser = tokenRepository.findAllValidTokensByUser(account.getId());
+        final List<Token> allValidTokensByUser = findTokenPort.findValidTokensByAccountId(account.getId());
         if (allValidTokensByUser.isEmpty()) {
             return;
         }
@@ -58,6 +60,6 @@ public class AuthenticateAccountService implements AuthenticateAccountUseCase {
             token.setRevoked(true);
             token.setExpired(true);
         });
-        tokenRepository.saveAll(allValidTokensByUser);
+        saveTokenPort.saveAll(allValidTokensByUser);
     }
 }
