@@ -29,6 +29,10 @@ public class SecurityConfig {
     private final JwtService jwtService;
 
     public static final String[] WHITE_LIST = {
+            "/v3/api-docs/**",
+            "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/favicon.ico",
             "/api/v1/auth/**",
             "/error"
     };
