@@ -9,11 +9,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "accounts")
+@Table
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,16 +24,19 @@ public class Account implements UserDetails {
     private Long id;
 
     @Column
-    private String firstName;
-
-    @Column
-    private String lastName;
+    private String email;
 
     @Column
     private String password;
 
     @Column
-    private String email;
+    private String name;
+
+    @Column
+    private String phoneNumber;
+
+    @Column
+    private Instant createdAt;
 
     @OneToMany(mappedBy = "account")
     private List<Token> tokens;
@@ -43,11 +47,12 @@ public class Account implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Account(String firstName, String lastName, String password, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
+    public Account(String email, String password, String name, String phoneNumber) {
         this.email = email;
+        this.password = password;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.createdAt = Instant.now();
     }
 
     @Override
