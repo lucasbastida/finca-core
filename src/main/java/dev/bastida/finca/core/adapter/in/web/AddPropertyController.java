@@ -1,7 +1,7 @@
 package dev.bastida.finca.core.adapter.in.web;
 
-import dev.bastida.finca.auth.domain.Account;
 import dev.bastida.finca.core.adapter.out.persistence.PropertyRepository;
+import dev.bastida.finca.core.domain.Account;
 import dev.bastida.finca.core.domain.Address;
 import dev.bastida.finca.core.domain.Property;
 import jakarta.validation.Valid;
